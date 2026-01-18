@@ -10,40 +10,8 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* 装饰性悬浮球 */}
-      <motion.div
-        className="absolute top-32 left-[15%] w-20 h-20 rounded-full opacity-60 blur-sm"
-        style={{
-          background: `radial-gradient(circle, ${themeConfig.primary} 0%, transparent 70%)`,
-        }}
-        animate={{
-          y: [0, -20, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      <motion.div
-        className="absolute bottom-40 right-[10%] w-32 h-32 rounded-full opacity-40 blur-md"
-        style={{
-          background: `radial-gradient(circle, ${themeConfig.secondary} 0%, transparent 70%)`,
-        }}
-        animate={{
-          y: [0, 30, 0],
-          scale: [1.1, 1, 1.1],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-
       {/* 主要内容 */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative max-w-4xl mx-auto px-6 text-center" style={{ zIndex: 10 }}>
         {/* 标签 */}
         <motion.div
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
@@ -76,25 +44,16 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.span
-            className="inline-block"
+          <span
             style={{
               background: `linear-gradient(135deg, ${themeConfig.primary} 0%, ${themeConfig.secondary} 50%, ${themeConfig.accent} 100%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
           >
             {CONTENT.hero.title}
-          </motion.span>
+          </span>
         </motion.h1>
 
         {/* 副标题 */}
@@ -127,7 +86,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.button
-            className="px-8 py-4 rounded-full font-semibold text-base tracking-wide"
+            className="px-8 py-4 rounded-full font-semibold text-base tracking-wide cursor-pointer"
             style={{
               background: `linear-gradient(135deg, ${themeConfig.primary}, ${themeConfig.secondary})`,
               color: theme === 'gold' ? '#1a1408' : '#0a0f1a',
@@ -138,12 +97,13 @@ export function Hero() {
               boxShadow: `0 8px 40px ${themeConfig.primary}60`,
             }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => alert('开始探索功能演示')}
           >
             开始探索
           </motion.button>
 
           <motion.button
-            className="px-8 py-4 rounded-full font-semibold text-base tracking-wide"
+            className="px-8 py-4 rounded-full font-semibold text-base tracking-wide cursor-pointer"
             style={{
               background: 'transparent',
               color: themeConfig.text.primary,
@@ -155,6 +115,7 @@ export function Hero() {
               backgroundColor: themeConfig.card.bg,
             }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => alert('了解更多功能演示')}
           >
             了解更多
           </motion.button>
@@ -162,10 +123,11 @@ export function Hero() {
 
         {/* 滚动提示 */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}

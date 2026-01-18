@@ -10,8 +10,9 @@ export function Header() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md"
+      className="fixed top-0 left-0 right-0 backdrop-blur-md"
       style={{
+        zIndex: 100,
         background: `linear-gradient(180deg, ${themeConfig.background.from}ee 0%, ${themeConfig.background.from}88 100%)`,
         borderBottom: `1px solid ${themeConfig.card.border}`,
       }}
@@ -22,7 +23,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <motion.div
-          className="flex items-center gap-3"
+          className="flex items-center gap-3 cursor-pointer"
           whileHover={{ scale: 1.02 }}
         >
           <motion.div
@@ -31,23 +32,8 @@ export function Header() {
               background: `linear-gradient(135deg, ${themeConfig.primary}20, ${themeConfig.secondary}20)`,
               border: `1px solid ${themeConfig.primary}40`,
             }}
-            animate={{
-              boxShadow: [
-                `0 0 10px ${themeConfig.glow}`,
-                `0 0 20px ${themeConfig.glow}`,
-                `0 0 10px ${themeConfig.glow}`,
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
           >
-            <Gem
-              size={24}
-              style={{ color: themeConfig.primary }}
-            />
+            <Gem size={24} style={{ color: themeConfig.primary }} />
           </motion.div>
           <div>
             <motion.h1
@@ -71,18 +57,12 @@ export function Header() {
             <motion.a
               key={item}
               href="#"
-              className="relative text-sm font-medium tracking-wide"
+              className="relative text-sm font-medium tracking-wide cursor-pointer"
               style={{ color: themeConfig.text.secondary }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, color: themeConfig.primary }}
+              whileTap={{ scale: 0.95 }}
             >
               {item}
-              <motion.span
-                className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
-                style={{ backgroundColor: themeConfig.primary }}
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.2 }}
-              />
             </motion.a>
           ))}
         </nav>

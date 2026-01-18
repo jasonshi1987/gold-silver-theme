@@ -24,7 +24,7 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
 
   return (
     <motion.div
-      className="relative group cursor-pointer overflow-hidden rounded-2xl"
+      className="relative overflow-hidden rounded-2xl cursor-pointer"
       style={{
         background: themeConfig.card.bg,
         border: `1px solid ${themeConfig.card.border}`,
@@ -35,11 +35,11 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
       transition={{ duration: 0.6, delay: index * 0.2 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -5, borderColor: themeConfig.primary }}
     >
       {/* 光泽扫过效果 */}
       <motion.div
-        className="absolute inset-0 z-10 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(
             105deg,
@@ -56,7 +56,7 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
       />
 
       {/* 卡片内容 */}
-      <div className="relative z-0 p-8">
+      <div className="relative p-8">
         {/* 图标 */}
         <motion.div
           className="w-16 h-16 rounded-xl flex items-center justify-center mb-6"
@@ -64,54 +64,35 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
             background: `linear-gradient(135deg, ${themeConfig.primary}20, ${themeConfig.secondary}20)`,
             border: `1px solid ${themeConfig.primary}30`,
           }}
-          animate={{
-            boxShadow: isHovered
-              ? `0 0 30px ${themeConfig.glow}`
-              : `0 0 10px ${themeConfig.glow}`,
-          }}
-          transition={{ duration: 0.3 }}
         >
           <Icon size={28} style={{ color: themeConfig.primary }} />
         </motion.div>
 
         {/* 标题 */}
-        <motion.h3
+        <h3
           className="text-xl font-bold mb-3"
           style={{ color: themeConfig.text.primary }}
         >
           {feature.title}
-        </motion.h3>
+        </h3>
 
         {/* 描述 */}
-        <motion.p
+        <p
           className="text-sm leading-relaxed"
           style={{ color: themeConfig.text.muted }}
         >
           {feature.description}
-        </motion.p>
+        </p>
 
         {/* 装饰线 */}
         <motion.div
-          className="mt-6 h-0.5 rounded-full"
+          className="mt-6 h-0.5 rounded-full origin-left"
           style={{ backgroundColor: themeConfig.primary }}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         />
       </div>
-
-      {/* 角落装饰 */}
-      <motion.div
-        className="absolute -top-10 -right-10 w-24 h-24 rounded-full opacity-20"
-        style={{
-          background: `radial-gradient(circle, ${themeConfig.primary} 0%, transparent 70%)`,
-        }}
-        animate={{
-          scale: isHovered ? 1.5 : 1,
-          opacity: isHovered ? 0.4 : 0.2,
-        }}
-        transition={{ duration: 0.3 }}
-      />
     </motion.div>
   );
 }
@@ -120,7 +101,7 @@ export function FeatureCards() {
   const { themeConfig } = useTheme();
 
   return (
-    <section className="py-24 px-6">
+    <section className="py-24 px-6 relative" style={{ zIndex: 10 }}>
       <div className="max-w-6xl mx-auto">
         {/* 标题 */}
         <motion.div

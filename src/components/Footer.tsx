@@ -18,6 +18,7 @@ export function Footer() {
     <footer
       className="relative py-16 px-6"
       style={{
+        zIndex: 10,
         background: `linear-gradient(180deg, transparent 0%, ${themeConfig.background.from} 100%)`,
         borderTop: `1px solid ${themeConfig.card.border}`,
       }}
@@ -74,7 +75,7 @@ export function Footer() {
                 <li key={item}>
                   <motion.a
                     href="#"
-                    className="text-sm transition-colors"
+                    className="text-sm cursor-pointer inline-block"
                     style={{ color: themeConfig.text.muted }}
                     whileHover={{ color: themeConfig.primary, x: 5 }}
                   >
@@ -103,7 +104,7 @@ export function Footer() {
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer"
                   style={{
                     background: themeConfig.card.bg,
                     border: `1px solid ${themeConfig.card.border}`,

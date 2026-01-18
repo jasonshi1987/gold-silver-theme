@@ -13,14 +13,14 @@ import {
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* 背景层 */}
+      {/* 背景层 - z-index: -1 */}
       <ParticleBackground />
 
-      {/* 主题切换过渡动画 */}
+      {/* 主题切换过渡动画 - z-index: 50 */}
       <TransitionRipple />
 
       {/* 内容层 */}
-      <div className="relative z-10">
+      <div className="relative" style={{ zIndex: 1 }}>
         <Header />
         <Hero />
         <FeatureCards />

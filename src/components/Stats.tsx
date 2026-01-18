@@ -27,8 +27,6 @@ function CountUp({ end, duration = 2, prefix = '', decimals = 0 }: CountUpProps)
     const animate = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-
-      // 使用 easeOutQuart 缓动函数
       const easeProgress = 1 - Math.pow(1 - progress, 4);
       const currentValue = startValue + (endValue - startValue) * easeProgress;
 
@@ -60,7 +58,7 @@ function StatItem({ stat, index }: StatItemProps) {
 
   return (
     <motion.div
-      className="relative text-center p-6 rounded-2xl"
+      className="relative text-center p-6 rounded-2xl cursor-pointer"
       style={{
         background: themeConfig.card.bg,
         border: `1px solid ${themeConfig.card.border}`,
@@ -75,7 +73,7 @@ function StatItem({ stat, index }: StatItemProps) {
       }}
     >
       {/* 数值 */}
-      <motion.div
+      <div
         className="text-4xl md:text-5xl font-bold mb-2"
         style={{
           background: `linear-gradient(135deg, ${themeConfig.primary}, ${themeConfig.accent})`,
@@ -90,30 +88,15 @@ function StatItem({ stat, index }: StatItemProps) {
           decimals={stat.value % 1 !== 0 ? 2 : 0}
         />
         <span className="text-2xl ml-1">{stat.unit}</span>
-      </motion.div>
+      </div>
 
       {/* 标签 */}
-      <motion.p
+      <p
         className="text-sm tracking-wide"
         style={{ color: themeConfig.text.muted }}
       >
         {stat.label}
-      </motion.p>
-
-      {/* 装饰点 */}
-      <motion.div
-        className="absolute top-2 right-2 w-2 h-2 rounded-full"
-        style={{ backgroundColor: themeConfig.primary }}
-        animate={{
-          opacity: [0.5, 1, 0.5],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          delay: index * 0.3,
-        }}
-      />
+      </p>
     </motion.div>
   );
 }
@@ -122,16 +105,8 @@ export function Stats() {
   const { themeConfig, theme } = useTheme();
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
-      {/* 背景装饰 */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background: `radial-gradient(ellipse 80% 50% at 50% 50%, ${themeConfig.glow}, transparent)`,
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section className="py-24 px-6 relative" style={{ zIndex: 10 }}>
+      <div className="max-w-6xl mx-auto relative">
         {/* 标题 */}
         <motion.div
           className="text-center mb-16"

@@ -21,9 +21,8 @@ export function ParticleBackground() {
     setMounted(true);
   }, []);
 
-  // 生成粒子数据
   const particles = useMemo<Particle[]>(() => {
-    return Array.from({ length: 30 }, (_, i) => ({
+    return Array.from({ length: 20 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -36,7 +35,10 @@ export function ParticleBackground() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div
+      className="fixed inset-0 overflow-hidden"
+      style={{ zIndex: -1, pointerEvents: 'none' }}
+    >
       {/* 渐变背景 */}
       <motion.div
         className="absolute inset-0"
@@ -48,7 +50,7 @@ export function ParticleBackground() {
 
       {/* 中心光晕 */}
       <motion.div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full opacity-30 blur-3xl"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl"
         animate={{
           background: `radial-gradient(circle, ${themeConfig.glow} 0%, transparent 70%)`,
         }}
@@ -69,9 +71,9 @@ export function ParticleBackground() {
             }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.5, 1],
-              y: [0, -30, 0],
+              opacity: [0.2, 0.6, 0.2],
+              scale: [1, 1.3, 1],
+              y: [0, -20, 0],
               backgroundColor: themeConfig.particle,
               boxShadow: `0 0 ${particle.size * 2}px ${themeConfig.particle}`,
             }}
@@ -85,32 +87,6 @@ export function ParticleBackground() {
           />
         ))}
       </AnimatePresence>
-
-      {/* 装饰性光圈 */}
-      <motion.div
-        className="absolute top-20 right-20 w-32 h-32 rounded-full opacity-20 blur-xl"
-        animate={{
-          backgroundColor: themeConfig.primary,
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      <motion.div
-        className="absolute bottom-40 left-20 w-24 h-24 rounded-full opacity-15 blur-xl"
-        animate={{
-          backgroundColor: themeConfig.secondary,
-          scale: [1.2, 1, 1.2],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
     </div>
   );
 }

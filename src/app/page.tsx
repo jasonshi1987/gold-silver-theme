@@ -5,26 +5,28 @@ import {
   TransitionRipple,
   Header,
   Hero,
-  FeatureCards,
-  Stats,
+  InterestGalaxy,
+  TravelMap,
+  CatSection,
   Footer,
 } from '@/components';
 
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* 背景层 - z-index: -1 */}
+      {/* 背景层 */}
       <ParticleBackground />
 
-      {/* 主题切换过渡动画 - z-index: 50 */}
+      {/* 主题切换过渡动画 */}
       <TransitionRipple />
 
       {/* 内容层 */}
       <div className="relative" style={{ zIndex: 1 }}>
         <Header />
         <Hero />
-        <FeatureCards />
-        <Stats />
+        <InterestGalaxy />
+        <TravelMap />
+        <CatSection />
         <Footer />
       </div>
     </main>

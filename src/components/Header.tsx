@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Gem } from 'lucide-react';
+import { Heart, Sparkles } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -29,43 +29,48 @@ export function Header() {
           <motion.div
             className="p-2 rounded-lg"
             style={{
-              background: `linear-gradient(135deg, ${themeConfig.primary}20, ${themeConfig.secondary}20)`,
-              border: `1px solid ${themeConfig.primary}40`,
+              background: `linear-gradient(135deg, #FF6B6B20, #DDA0DD20)`,
+              border: `1px solid #FF6B6B40`,
             }}
+            animate={{
+              boxShadow: [
+                '0 0 10px rgba(255, 107, 107, 0.3)',
+                '0 0 20px rgba(255, 107, 107, 0.5)',
+                '0 0 10px rgba(255, 107, 107, 0.3)',
+              ],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            <Gem size={24} style={{ color: themeConfig.primary }} />
+            <Heart size={22} fill="#FF6B6B" color="#FF6B6B" />
           </motion.div>
           <div>
             <motion.h1
               className="text-lg font-bold tracking-wide"
               style={{ color: themeConfig.text.primary }}
             >
-              G&S Gallery
+              宝藏女孩
             </motion.h1>
             <motion.p
-              className="text-xs tracking-widest uppercase"
+              className="text-xs tracking-widest"
               style={{ color: themeConfig.text.muted }}
             >
-              Precious Metals
+              Treasure Girl
             </motion.p>
           </div>
         </motion.div>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {['鉴赏', '投资', '收藏', '资讯'].map((item) => (
-            <motion.a
-              key={item}
-              href="#"
-              className="relative text-sm font-medium tracking-wide cursor-pointer"
-              style={{ color: themeConfig.text.secondary }}
-              whileHover={{ scale: 1.05, color: themeConfig.primary }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {item}
-            </motion.a>
-          ))}
-        </nav>
+        {/* 中间装饰 */}
+        <div className="hidden md:flex items-center gap-2">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+          >
+            <Sparkles size={16} style={{ color: themeConfig.primary }} />
+          </motion.div>
+          <span className="text-sm" style={{ color: themeConfig.text.muted }}>
+            Gold & Silver Mode
+          </span>
+        </div>
 
         {/* Theme Toggle */}
         <div className="flex items-center gap-4">

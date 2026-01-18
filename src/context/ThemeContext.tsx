@@ -5,7 +5,7 @@ import { ThemeType, THEMES } from '@/constants/theme';
 
 interface ThemeContextType {
   theme: ThemeType;
-  themeConfig: typeof THEMES.gold;
+  themeConfig: (typeof THEMES)[ThemeType];
   toggleTheme: () => void;
   isTransitioning: boolean;
   rippleOrigin: { x: number; y: number } | null;
